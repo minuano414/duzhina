@@ -65,8 +65,8 @@ def process_video(input_video_path, output_video_path):
     return output_list
 
 
-input_video_path = rf'D:\MPIT_HATACON\verticalization_dataset_fixed\shot_videos\_2jQ0W5kXIUqdk5yUsj9FA.mp4'
-output_json_path = rf'D:\MPIT_HATACON\scripts'
+input_video_path = rf''
+output_json_path = rf''
 
 final_output = process_video(input_video_path, output_json_path)
 
