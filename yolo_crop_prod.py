@@ -12,7 +12,7 @@ yolo_model = YOLO("yolov8n.pt")
 
 def process_frame(frame):
     try:
-        frame = Image.fromarray(np.uint8(frame)).convert('RGB')
+        reformat_frame = Image.fromarray(np.uint8(frame)).convert('RGB')
         with torch.no_grad():
             pred = yolo_model(frame, iou=0.45, conf=0.75, classes=[0])[0]
 
@@ -32,8 +32,8 @@ def process_frame(frame):
                 x, y, w, h = xywh[0], xywh[1], xywh[2], xywh[3]
                 crop_x1 = int(x - (9 * w / 16) / 2)
                 crop_x2 = int(x + (9 * w / 16) / 2)
-                crop_y1 = int(y - (frame.size[1]) / 2)
-                crop_y2 = int(y + (frame.size[1]) / 2)
+                crop_y1 = int(y - (reformat_frame.size[1]) / 2)
+                crop_y2 = int(y + (reformat_frame.size[1]) / 2)
                 return {'x1': crop_x1, 'y1': crop_y1, 'x2': crop_x2, 'y2': crop_y2}
         else:
             return {"x1": '', "y1": '', "x2": '', "y2": ''}
@@ -65,8 +65,8 @@ def process_video(input_video_path, output_video_path):
     return output_list
 
 
-input_video_path = rf''
-output_json_path = rf''
+input_video_path = rf'D:\MPIT_HATACON\verticalization_dataset_fixed\shot_videos\_2jQ0W5kXIUqdk5yUsj9FA.mp4'
+output_json_path = rf'D:\MPIT_HATACON\scripts'
 
 final_output = process_video(input_video_path, output_json_path)
 
