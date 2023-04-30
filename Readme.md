@@ -23,7 +23,8 @@ ____
 2) Вызвать `docker-compose up`
 3) `docker exec -it <CONTAINER_ID_OR_NAME> bash`
 4) `python3 app/main.py --video_file <название файла> --actors_file <название файла> --meta_file <название файла>`.
-Например, запустить demo `python3 app/main.py --video_file demo_video.mp4 --actors_file demo_actors_list.json --meta_file demo_meta.json`. Если каких-то файлов (кроме видео) нет - можно просто заполнить любой строкой, например,  `--actors_file abc`
+Например, запустить demo `python3 app/main.py --video_file demo_video.mp4 --actors_file demo_actors_list.json --meta_file demo_meta.json`.
+Если каких-то файлов (кроме видео) нет - можно просто заполнить любой строкой, например,  `--actors_file abc`
 5) Результат выполнения будет выведен в командную строку, а также в файл `<название файла видео>_result.json` в папку `data`
 
 !!! В случае, если какие-то файлы кроме видео не будут загружены, результат будет выведен без учета дополнительной валидации

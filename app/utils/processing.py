@@ -18,8 +18,10 @@ def process_frame(frame: np.array,
                   actors_priorty: List[int] = None, video_metadata: List[int] = None) -> Optional[float]:
     with torch.no_grad():
         pred = detector(frame, iou=0.45, conf=0.75, classes=[0])[0]
-
-    actor_box = _box_choise(pred, frame, classifier, actors_priorty, video_metadata[count])
+    if video_metadata:
+        actor_box = _box_choise(pred, frame, classifier, actors_priorty, video_metadata[count])
+    else:
+        actor_box = _box_choise(pred, frame, classifier, actors_priorty)
     if actor_box:
         for xyxy in actor_box[0].xyxy:
             x1, y1, x2, y2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]

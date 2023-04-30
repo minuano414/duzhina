@@ -69,15 +69,15 @@ def _box_choise(pred: tensor,
         actor = classify_actor(frame, box[0].xyxy[0], classifier)
         actors[str(actor)] = box
 
-    try:
-        score = video_metadata[0].get("score", -1)
-    except:
-        score = video_metadata.get("score", -1)
-
-    if video_metadata and score > 0:
-        actor = is_speaking(boxes, video_metadata)
-        if actor:
-            return actor
+    if video_metadata:
+        try:
+            score = video_metadata[0].get("score", -1)
+        except:
+            score = video_metadata.get("score", -1)
+        if score > 0:
+            actor = is_speaking(boxes, video_metadata)
+            if actor:
+                return actor
 
     if actors_priority:
         actor = prioritise(list(actors.keys()), actors_priority)
