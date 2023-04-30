@@ -26,7 +26,7 @@ def trigger(video_path: str,
             detector: YOLO,
             classifier: ResNet) -> None:
     video_metadata = read_meta(video_metadata_path)
-    actors_priority = read_meta(actors_priority_path)[0]
+    actors_priority = read_meta(actors_priority_path)
 
     final_output = process_video(video_metadata=video_metadata,
                                  detector=detector,
